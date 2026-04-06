@@ -1,0 +1,74 @@
+/* ─────────────────────────────────────────
+   progressblock/progressblock.css
+   Стили SVG-дуги и её состояний: Normal, Animated
+───────────────────────────────────────── */
+
+/* Обёртка дуги — позиционирует SVG и центральный текст */
+.arc-wrap {
+  position: relative;
+  width: var(--arc-size);
+  height: var(--arc-size);
+  flex-shrink: 0;
+}
+
+/* SVG повёрнут на -90deg, чтобы дуга стартовала с 12 часов,
+   а не с 3 часов (дефолтная точка начала в SVG) */
+.arc-wrap svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+/* Фоновая дорожка — серый полный круг */
+.arc-track {
+  fill: none;
+  stroke: #e2e6f0;
+  stroke-width: 14px;
+  stroke-linecap: round;
+}
+
+/* Заполняемая дуга прогресса.
+   strokeDasharray и strokeDashoffset задаются из JS динамически,
+   потому что зависят от реального радиуса элемента */
+.arc-fill {
+  fill: none;
+  stroke: url(#arcGradient);
+  stroke-width: 14px;
+  stroke-linecap: round;
+  /* Плавная анимация изменения значения */
+  transition: stroke-dashoffset 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Числовое значение в центре круга */
+.arc-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  transition: opacity 0.3s;
+}
+
+/* ── Состояние Animated ──
+   Вращается весь SVG целиком по часовой стрелке.
+   Анимация применяется через JS-класс .animating */
+.arc-wrap.animating svg {
+  animation: arc-spin 1.2s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes arc-spin {
+  /* Старт с -90deg (12 часов) и делает полный оборот */
+  from { transform: rotate(-90deg); }
+  to   { transform: rotate(270deg); }
+}
+
+/* При вращении приглушаем центральное число*/
+.arc-wrap.animating .arc-center {
+  opacity: 0.3;
+}

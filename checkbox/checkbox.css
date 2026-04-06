@@ -1,0 +1,55 @@
+/* ─────────────────────────────────────────
+   checkbox/checkbox.css
+   Кастомный toggle-переключатель.
+   Скрывает нативный <input type="checkbox">
+   и рисует стилизованный трек + ползунок.
+───────────────────────────────────────── */
+
+/* Обёртка-label: занимает ровно размер трека */
+.checkbox {
+  position: relative;
+  width: 40px;
+  height: 24px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* Скрываем нативный чекбокс визуально,
+   но оставляем его доступным для клика и скринридеров */
+.checkbox__input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+/* Фоновый трек переключателя */
+.checkbox__track {
+  position: absolute;
+  inset: 0;
+  background: #d1d5db;
+  border-radius: 999px;
+  transition: background 0.25s;
+}
+
+/* Ползунок */
+.checkbox__thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Состояние ON: синий трек + ползунок сдвигается вправо */
+.checkbox__input:checked ~ .checkbox__track {
+  background: #2563eb;
+}
+
+.checkbox__input:checked ~ .checkbox__thumb {
+  transform: translateX(16px);
+}

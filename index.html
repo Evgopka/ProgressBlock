@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Progress</title>
+
+  <link rel="stylesheet" href="main.css" />
+  <link rel="stylesheet" href="checkbox/checkbox.css" />
+  <link rel="stylesheet" href="progressblock/progressblock.css" />
+  <link rel="stylesheet" href="progressblockcontrol/progressblockcontrol.css" />
+</head>
+<body>
+
+  <div class="card" id="card">
+    <div class="card-label">Progress</div>
+
+    <div class="card-body">
+
+      <!-- Progress Block: дуга с центральным значением -->
+      <div class="arc-wrap" id="arcWrap">
+        <svg viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Градиент заливки дуги -->
+            <linearGradient id="arcGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stop-color="#2563eb"/>
+              <stop offset="100%" stop-color="#60a5fa"/>
+            </linearGradient>
+          </defs>
+          <!-- Фоновая дорожка -->
+          <circle class="arc-track" cx="75" cy="75" r="65"/>
+          <!-- Заполняемая дуга прогресса -->
+          <circle class="arc-fill" cx="75" cy="75" r="65"/>
+        </svg>
+        <!-- Числовое значение в центре круга -->
+        <div class="arc-center">0</div>
+      </div>
+
+      <!-- Панель управления: Value, Animate, Hide -->
+      <div class="progress-block-control">
+
+        <div class="control-row">
+          <input
+            class="value-input"
+            id="valueInput"
+            type="number"
+            min="0"
+            max="100"
+            value="0"
+          />
+          <span class="control-label">Value</span>
+        </div>
+
+        <div class="control-row">
+          <label class="checkbox">
+            <input type="checkbox" class="checkbox__input" id="animateToggle"/>
+            <span class="checkbox__track"></span>
+            <span class="checkbox__thumb"></span>
+          </label>
+          <span class="control-label">Animate</span>
+        </div>
+
+        <div class="control-row">
+          <label class="checkbox">
+            <input type="checkbox" class="checkbox__input" id="hideToggle"/>
+            <span class="checkbox__track"></span>
+            <span class="checkbox__thumb"></span>
+          </label>
+          <span class="control-label">Hide</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="progressblock/progressblock.js"></script>
+  <script src="progressblockcontrol/progressblockcontrol.js"></script>
+</body>
+</html>

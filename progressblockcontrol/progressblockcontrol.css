@@ -1,0 +1,60 @@
+/* ─────────────────────────────────────────
+   progressblockcontrol/progressblockcontrol.css
+   Стили панели управления: строки контролов,
+   числовой инпут, подписи
+───────────────────────────────────────── */
+
+/* Панель контролов: столбец строк */
+.progress-block-control {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+/* В landscape панель растягивается на свободное пространство */
+@media (orientation: landscape) {
+  .progress-block-control {
+    width: auto;
+    flex: 1;
+  }
+}
+
+/* Одна строка: [элемент управления] [подпись] */
+.control-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Подпись рядом с контролом */
+.control-label {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+/* ── Числовой инпут Value ── */
+.value-input {
+  width: 64px;
+  height: 32px;
+  border: 1.5px solid #e2e6f0;
+  border-radius: 999px;
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+  /* Убираем стрелки браузера у number-инпута */
+  -moz-appearance: textfield;
+}
+.value-input::-webkit-inner-spin-button,
+.value-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+.value-input:focus {
+  border-color: #2563eb;
+}

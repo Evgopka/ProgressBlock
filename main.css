@@ -1,0 +1,99 @@
+/* ─────────────────────────────────────────
+   main.css
+   Базовые стили: сброс, переменные, карточка,
+   адаптивная раскладка portrait / landscape
+───────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* Сброс отступов и box-model */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Дизайн-токены — все цвета и размеры */
+:root {
+  --bg:           #f0f2f7;
+  --card-bg:      #ffffff;
+  --text-primary: #1a1d2e;
+  --text-secondary: #6b7280;
+  --shadow:       0 2px 16px rgba(37,99,235,0.08), 0 1px 4px rgba(0,0,0,0.06);
+  --radius:       16px;
+  --arc-size:     160px;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 24px 24px;
+  width: 100%;
+  max-width: 320px;
+  /* Плавное скрытие для состояния Hidden */
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* Состояние Hidden: скрываем с плавной анимацией.
+   pointer-events: none — чтобы скрытая карточка не перехватывала клики */
+.card.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.96);
+}
+
+.card-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+/* Portrait: дуга сверху, контролы снизу */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+/* ── Landscape: дуга слева, контролы справа ──
+   Используем orientation media query вместо max-width,
+   чтобы точно отслеживать поворот экрана устройства */
+@media (orientation: landscape) {
+  :root {
+    --arc-size: 130px;
+  }
+
+  .card {
+    max-width: 520px;
+    padding: 20px 28px 24px;
+  }
+
+  .card-body {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+}
+
+/* Маленькие экраны в portrait */
+@media (max-width: 360px) {
+  :root { --arc-size: 130px; }
+}
