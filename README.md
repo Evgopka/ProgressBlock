@@ -10,10 +10,10 @@
 ├── main.css                            # Базовые стили, токены, карточка, адаптивность
 ├── progressblock/
 │   ├── progressblock.js                # Ядро: ProgressBlockManager (логика блока)
-│   └── progressblock.css              # Стили дуги и состояний Normal / Animated
+│   └── progressblock.css               # Стили дуги и состояний Normal / Animated
 ├── progressblockcontrol/
 │   ├── progressblockcontrol.js         # Контроллер: привязка UI к менеджеру
-│   └── progressblockcontrol.css       # Стили панели управления и инпута
+│   └── progressblockcontrol.css        # Стили панели управления и инпута
 └── checkbox/
     └── checkbox.css                    # Стили кастомного toggle-переключателя
 ```
